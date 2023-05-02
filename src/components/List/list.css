@@ -1,0 +1,40 @@
+.task {
+  width: 70vh;
+  height: 60vh;
+  list-style: none;
+  overflow-y: visible;
+  overflow-x: hidden;
+}
+
+.task li {
+  width: 90%;
+  height: 35%;
+  border: 3px solid #61dafbaa;
+  background-color: #242424;
+  filter: drop-shadow(0 0 0.2em #61dafbaa);
+  border-radius: 10px;
+  margin: 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: 0.3s;
+}
+
+.task li:hover {
+  border: 3px solid #61fb75aa;
+  filter: drop-shadow(0 0 0.2em #61fb75aa);
+  transition: 0.3s;
+}
+
+.task-title {
+  font-size: x-large;
+  text-decoration: dotted;
+}
+
+.task-desc {
+  inline-size: 100%;
+  overflow-wrap: break-word;
+  overflow-y: visible;
+  overflow-x: hidden;
+}
