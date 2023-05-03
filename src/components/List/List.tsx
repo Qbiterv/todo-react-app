@@ -10,7 +10,7 @@ type Props = {
   onClick: (index: number) => void;
 };
 
-const List = ({ items, onClick }: Props) => {
+export const List = ({ items, onClick }: Props) => {
   return (
     <ul className="task">
       {items.map((item, index) => (
@@ -27,5 +27,3 @@ const List = ({ items, onClick }: Props) => {
     </ul>
   );
 };
-
-export default List;

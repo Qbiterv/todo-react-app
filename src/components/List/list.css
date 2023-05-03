@@ -8,7 +8,7 @@
 
 .task li {
   width: 90%;
-  height: 35%;
+  padding: 1vh;
   border: 3px solid #61dafbaa;
   background-color: #242424;
   filter: drop-shadow(0 0 0.2em #61dafbaa);
@@ -34,6 +34,7 @@
 
 .task-desc {
   inline-size: 100%;
+  max-height: 40vh;
   overflow-wrap: break-word;
   overflow-y: visible;
   overflow-x: hidden;

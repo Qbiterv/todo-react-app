@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import Button from "./components/Button";
-import List from "./components/List/List";
+import { Button } from "./components/Button";
+import { List } from "./components/List/List";
 import "./App.css";
 
 interface Task {
@@ -10,21 +10,27 @@ interface Task {
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>(() => {
-    const savedTasks = localStorage.getItem("tasks");
-    if (savedTasks) return JSON.parse(savedTasks);
-    return [];
+    const storedTasks = localStorage.getItem("tasks");
+    return storedTasks ? JSON.parse(storedTasks) : [];
   });
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
+
+  useEffect(() => {
+    const storedTasks = localStorage.getItem("tasks");
+    if (storedTasks) {
+      setTasks(JSON.parse(storedTasks));
+    }
+  }, []);
 
   const [modalStatus, setModalStatus] = useState(false);
 
   const taskTitle = useRef<HTMLInputElement>(null!);
   const taskDesc = useRef<HTMLTextAreaElement>(null!);
 
-  useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
-
-  function taskHandler(event: React.FormEvent<HTMLFormElement>) {
+  function taskHandler(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
     if (taskTitle.current.value === "" || taskDesc.current.value === "") return;
     setTasks((prevTasks) => [
@@ -52,7 +58,7 @@ function App() {
           </button>
           <form className="task-modal" onSubmit={taskHandler}>
             <label htmlFor="title">Title</label>
-            <input maxLength={40} id="title" type="text" ref={taskTitle} />
+            <input maxLength={20} id="title" type="text" ref={taskTitle} />
             <label htmlFor="description">Description</label>
             <textarea
               ref={taskDesc}
@@ -63,14 +69,16 @@ function App() {
           </form>
         </div>
       ) : (
-        <Button
-          type="button"
-          onClick={() => {
-            setModalStatus(true);
-          }}
-        >
-          Create new task 😊
-        </Button>
+        <div>
+          <Button
+            type="button"
+            onClick={() => {
+              setModalStatus(true);
+            }}
+          >
+            Create new task 😊
+          </Button>
+        </div>
       )}
     </>
   );
