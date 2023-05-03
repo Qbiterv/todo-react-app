@@ -18,13 +18,6 @@ function App() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
-  useEffect(() => {
-    const storedTasks = localStorage.getItem("tasks");
-    if (storedTasks) {
-      setTasks(JSON.parse(storedTasks));
-    }
-  }, []);
-
   const [modalStatus, setModalStatus] = useState(false);
 
   const taskTitle = useRef<HTMLInputElement>(null!);
