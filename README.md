@@ -14,7 +14,7 @@ This project is a simple todo list app built using React and Vite.
 #### Clone repo
 
 ```bash
-  git clone Qbiterv/todo-react-app
+  git clone Qbiterv/todo-react-app.git
 ```
 
 #### Install dependencies
